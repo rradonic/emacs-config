@@ -1,6 +1,6 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/color-theme"))
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/php-mode"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/php-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/yaml-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/zenburn-emacs"))
 
@@ -10,8 +10,8 @@
 
 (require 'ediff)
 (require 'ibuffer)
-(load "nxhtml/autostart.el")
-;; (require 'php-mode)
+;; (load "nxhtml/autostart.el")
+(require 'php-mode)
 (require 'tramp)
 (require 'vc)
 (require 'vc-svn)
