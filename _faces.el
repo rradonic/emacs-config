@@ -39,7 +39,7 @@
  `(mode-line-inactive ((t (:background "#2e3330" :foreground "#88b090"))))
  `(mode-line-highlight ((t nil)))
  `(font-lock-type ((t (:foreground ,zenburn-orange :weight bold))))
- `(font-lock-function-name ((t (:weight bold))))
+ ;; `(font-lock-function-name ((t (:weight bold))))
  ;; `(nxml-processing-instruction-content ((t (:foreground ,zenburn-blue))))
  ;; `(nxml-processing-instruction-delimiter ((t (:foreground ,zenburn-blue))))
  ;; `(nxml-processing-instruction-target ((t (:foreground ,zenburn-blue))))
