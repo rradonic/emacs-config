@@ -5,12 +5,12 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/zenburn-emacs"))
 
 (require '_general)
-(require '_faces)
+;; (require '_faces_default)
+(require '_faces_zenburn)
 (require '_modes)
 
 (require 'ediff)
 (require 'ibuffer)
-;; (load "nxhtml/autostart.el")
 (require 'php-mode)
 (require 'tramp)
 (require 'vc)
