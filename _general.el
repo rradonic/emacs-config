@@ -57,7 +57,7 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq-default ediff-auto-refine 'off)
-(setq-default ediff-autostore-merges nil)
+(setq-default ediff-keep-variants nil)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq-default require-final-newline t)
