@@ -2,7 +2,7 @@
 
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
-(add-to-list 'default-frame-alist '(height . 65))
+(add-to-list 'default-frame-alist '(height . 50))
 (add-to-list 'default-frame-alist '(width . 120))
 
 ;; (add-to-list 'default-frame-alist '(alpha 95 95))
@@ -31,7 +31,6 @@
 (setq mouse-wheel-scroll-amount `(3))
 
 (setq-default truncate-lines t)
-(setq-default fill-column 100)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
