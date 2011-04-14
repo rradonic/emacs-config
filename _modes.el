@@ -58,7 +58,7 @@
                ("views" (filename . ".*/views/.*"))
                ("models" (filename . ".*/model/.*"))
                ("fixtures" (filename . ".*/fixtures/.*"))
-               ("tests" (filename . ".*/test/.*"))
+               ("tests" (filename . ".*/tests/.*"))
                ("configuration" (filename . ".*/config/.*"))
                ("i18n" (filename . ".*/i18n/.*"))
                ("logs" (filename . ".*/logs/.*"))
