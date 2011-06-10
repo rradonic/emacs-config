@@ -1,11 +1,12 @@
 (add-to-list 'default-frame-alist '(font . "Monospace-10"))
 
 (custom-set-faces
- '(mode-line ((t (:background "gray70"))))
- '(mode-line-inactive ((t (:background "gray85" :foreground "gray50"))))
+ '(mode-line ((t (:background "gray20" :foreground "gray90"))))
+ '(mode-line-inactive ((t (:background "gray85" :foreground "gray40"))))
  '(mode-line-highlight ((t (:box nil))))
- '(region ((t (:background "#97bf60" :foreground "#ffffff"))))
- '(cursor ((t (:background "gray20"))))
+
+ '(sh-quoted-exec ((t (:inherit font-lock-string-face))))
+ ;; '(cursor ((t (:background "gray20"))))
 
  ;;'(tex-verbatim ((t nil)))
  )
