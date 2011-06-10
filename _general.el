@@ -5,7 +5,7 @@
 (add-to-list 'default-frame-alist '(height . 50))
 (add-to-list 'default-frame-alist '(width . 120))
 
-;; (add-to-list 'default-frame-alist '(alpha 95 95))
+(add-to-list 'default-frame-alist '(alpha 97 97))
 
 (setq tooltip-use-echo-area t)
 (tool-bar-mode -1)
@@ -48,13 +48,14 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
-(global-set-key (kbd "C-x <") 'scroll-right)
-(global-set-key (kbd "C-x >") 'scroll-left)
+(global-set-key (kbd "C-x <") '(lambda nil (interactive) (scroll-right 60)))
+(global-set-key (kbd "C-x >") '(lambda nil (interactive) (scroll-left 60)))
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-i") 'indent-relative)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
+;; (setq ediff-merge-split-window-function 'split-window-vertically)
 (setq-default ediff-auto-refine 'off)
 (setq-default ediff-keep-variants nil)
 
