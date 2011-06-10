@@ -13,14 +13,18 @@
                      nxml-mode-hook
                      yaml-mode-hook
                      sh-mode-hook
+                     python-mode-hook
                      lisp-mode-hook
                      emacs-lisp-mode-hook
                      lisp-interaction-mode-hook))
   (add-hook mode-hook 'set-comment-region-keys)
   (add-hook mode-hook (lambda nil (subword-mode 1))))
 
-(dolist (mode-hook '(c-mode-hook))
-  (add-hook mode-hook (lambda nil (c-set-style "stroustrup"))))
+(setq c-default-style
+      '((java-mode . "java")
+        (awk-mode . "awk")
+        (c++-mode . "stroustrup")
+        (other . "gnu")))
 
 ;; disable ruby's specific C-j binding, make it do just newline-and-indent instead
 ;; of indent,newline,indent
