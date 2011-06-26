@@ -5,11 +5,6 @@
  '(mode-line-inactive ((t (:background "gray85" :foreground "gray40"))))
  '(mode-line-highlight ((t (:box nil))))
 
- '(sh-quoted-exec ((t (:inherit font-lock-string-face))))
- ;; '(cursor ((t (:background "gray20"))))
-
- ;;'(tex-verbatim ((t nil)))
- )
-;;(setq tex-fontify-script nil)
+ '(sh-quoted-exec ((t (:inherit font-lock-string-face)))))
 
 (provide '_faces_default)

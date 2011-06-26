@@ -11,21 +11,14 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-;; (set-scroll-bar-mode `right)
 
 (blink-cursor-mode -1)
-;; (setq default-cursor-type '(bar . 1))
-;; (setq default-cursor-in-non-selected-windows 'nil)
 
-;; (cua-mode 1)
-;; (setq cua-enable-cua-keys nil)
-;; (setq cua-virtual-rectangle-edges nil)
 (delete-selection-mode 1)
 (transient-mark-mode -1)
 
 (line-number-mode 1)
 (column-number-mode 1)
-;; (size-indication-mode 1)
 
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-scroll-amount `(3))
@@ -54,8 +47,8 @@
 (global-set-key (kbd "M-i") 'indent-relative)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
-(setq ediff-split-window-function 'split-window-horizontally)
-;; (setq ediff-merge-split-window-function 'split-window-vertically)
+(setq ediff-split-window-function 'split-window-vertically)
+(setq ediff-merge-split-window-function 'split-window-vertically)
 (setq-default ediff-auto-refine 'off)
 (setq-default ediff-keep-variants nil)
 
@@ -69,5 +62,11 @@
 ;; (remove-hook 'delete-frame-functions 'server-handle-delete-frame)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
+(setq backup-by-copying t)
+
+(setq grep-find-ignored-directories
+      (quote ("CVS" ".svn" ".git" ".hg" ".bzr" "dependencies" "log" "build")))
 
 (provide '_general)

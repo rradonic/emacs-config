@@ -1,4 +1,5 @@
 (setq rng-nxml-auto-validate-flag nil)
+(setq c-basic-offset 4)
 (setq nxml-child-indent 4)
 (setq sgml-basic-offset 4)
 (setq ruby-insert-encoding-magic-comment nil)
@@ -10,6 +11,8 @@
 (dolist (mode-hook '(nxhtml-mode-hook
                      ruby-mode-hook
                      c-mode-hook
+                     c++-mode-hook
+                     cmake-mode-hook
                      nxml-mode-hook
                      yaml-mode-hook
                      sh-mode-hook
@@ -30,8 +33,8 @@
 ;; of indent,newline,indent
 (add-hook 'ruby-mode-hook (lambda nil (local-set-key (kbd "C-j") 'newline-and-indent)))
 
-(setq grep-find-ignored-directories
-      (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "dependencies" "log")))
+;; php-mode overrides the settings in c-default-style, so we need to enforce them
+(add-hook 'php-mode-hook (lambda nil (c-set-style "stroustrup")))
 
 (setq ibuffer-formats
       (quote ((mark modified read-only "  " (name 30 30 :left :elide) "  " filename-and-process)
@@ -40,10 +43,10 @@
       (quote (("default"
                ("*star*" (name . "\\*.*\\*")))
               ("cpp"
+               ("*star*" (name . "\\*.*\\*"))
                ("source files" (filename . ".*\\.cpp"))
                ("header files" (filename . ".*\\.hpp"))
-               ("resources" (filename . ".*/resources/.*"))
-               ("*star*" (name . "\\*.*\\*")))
+               ("resources" (filename . ".*/resources/.*")))
               ("rails"
                ("*star*" (name . "\\*.*\\*"))
                ("controllers" (filename . ".*controllers/.*"))
