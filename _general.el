@@ -3,9 +3,9 @@
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
 (add-to-list 'default-frame-alist '(height . 50))
-(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(width . 100))
 
-(add-to-list 'default-frame-alist '(alpha 97 97))
+;; (add-to-list 'default-frame-alist '(alpha 94 94))
 
 (setq tooltip-use-echo-area t)
 (tool-bar-mode -1)
@@ -13,6 +13,8 @@
 (scroll-bar-mode -1)
 
 (blink-cursor-mode -1)
+;; (setq default-cursor-type '(bar . 1))
+;; (setq default-cursor-in-non-selected-windows 'nil)
 
 (delete-selection-mode 1)
 (transient-mark-mode -1)
@@ -26,6 +28,8 @@
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq-default tab-stop-list
+              '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))
 
 (setq mouse-drag-copy-region nil)
 (setq select-active-regions t)
@@ -46,11 +50,9 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-i") 'indent-relative)
 
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-(setq ediff-split-window-function 'split-window-vertically)
-(setq ediff-merge-split-window-function 'split-window-vertically)
-(setq-default ediff-auto-refine 'off)
-(setq-default ediff-keep-variants nil)
+(defalias 'er 'ediff-revision)
+(defalias 'eb 'ediff-buffers)
+(defalias 'ef 'ediff-files)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq-default require-final-newline t)

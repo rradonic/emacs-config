@@ -10,3 +10,6 @@
 [submodule "php-mode"]
 	path = php-mode
 	url = git@github.com:rradonic/php-mode.git
+[submodule "clojure-mode"]
+	path = clojure-mode
+	url = git://github.com/technomancy/clojure-mode.git

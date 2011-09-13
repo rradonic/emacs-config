@@ -1,4 +1,5 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/clojure-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/color-theme"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/php-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/yaml-mode"))
@@ -9,6 +10,7 @@
 (require '_faces_zenburn)
 (require '_modes)
 
+(require 'clojure-mode)
 (require 'ediff)
 (require 'ibuffer)
 (require 'php-mode)
