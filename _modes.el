@@ -45,9 +45,11 @@
               (mark "  " (name 30 30) "  " filename))))
 (setq ibuffer-saved-filter-groups
       (quote (("default"
-               ("*star*" (name . "\\*.*\\*")))
+               ("*emacs*" (or (mode . dired-mode)
+                              (name . "\\*.*\\*"))))
               ("rails"
-               ("*star*" (name . "\\*.*\\*"))
+               ("*emacs*" (or (mode . dired-mode)
+                              (name . "\\*.*\\*")))
                ("controllers" (filename . ".*controllers/.*"))
                ("views" (filename . ".*views/.*"))
                ("models" (filename . ".*models/.*"))
@@ -59,7 +61,8 @@
                ("tests" (filename . ".*test/.*"))
                ("logs" (filename . ".*log/.*")))
               ("kohana"
-               ("*star*" (name . "\\*.*\\*"))
+               ("*emacs*" (or (mode . dired-mode)
+                              (name . "\\*.*\\*")))
                ("controllers" (filename . ".*/controller/.*"))
                ("views" (filename . ".*/views/.*"))
                ("models" (filename . ".*/model/.*"))
