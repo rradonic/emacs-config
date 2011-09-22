@@ -6,8 +6,8 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/zenburn-emacs"))
 
 (require '_general)
-;; (require '_faces_default)
-(require '_faces_zenburn)
+(require '_faces_default)
+;; (require '_faces_zenburn)
 (require '_modes)
 
 (require 'clojure-mode)

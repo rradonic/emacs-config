@@ -14,6 +14,7 @@
                      c++-mode-hook
                      clojure-mode-hook
                      cmake-mode-hook
+                     html-mode-hook
                      nxml-mode-hook
                      yaml-mode-hook
                      sh-mode-hook
