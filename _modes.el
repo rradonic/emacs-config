@@ -48,6 +48,11 @@
       (quote (("default"
                ("*emacs*" (or (mode . dired-mode)
                               (name . "\\*.*\\*"))))
+              ("cpp"
+               ("*emacs*" (or (mode . dired-mode)
+                              (name . "\\*.*\\*")))
+               ("headers" (filename . ".*\.hpp"))
+               ("source" (filename . ".*\.cpp")))
               ("rails"
                ("*emacs*" (or (mode . dired-mode)
                               (name . "\\*.*\\*")))
