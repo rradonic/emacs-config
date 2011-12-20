@@ -4,6 +4,7 @@
 (setq sgml-basic-offset 4)
 (setq ruby-insert-encoding-magic-comment nil)
 
+;; comment region keys that work regardless of whether or not the region is active
 (defun set-comment-region-keys ()
   (local-set-key (kbd "C-c c") 'comment-region)
   (local-set-key (kbd "C-c u") 'uncomment-region))
@@ -22,21 +23,17 @@
                      lisp-mode-hook
                      emacs-lisp-mode-hook
                      lisp-interaction-mode-hook))
-  (add-hook mode-hook 'set-comment-region-keys)
-  (add-hook mode-hook (lambda nil (subword-mode 1))))
+  (add-hook mode-hook 'set-comment-region-keys))
 
 (setq c-default-style
       '((java-mode . "java")
         (awk-mode . "awk")
-        (c++-mode . "stroustrup")
+        (c++-mode . "linux")
+        (c++-mode . "linux")
         (other . "gnu")))
 
-;; disable ruby's specific C-j binding, make it do just newline-and-indent instead
-;; of indent,newline,indent
-(add-hook 'ruby-mode-hook (lambda nil (local-set-key (kbd "C-j") 'newline-and-indent)))
-
 ;; php-mode overrides the settings in c-default-style, so we need to enforce them
-(add-hook 'php-mode-hook (lambda nil (c-set-style "stroustrup")))
+(add-hook 'php-mode-hook (lambda nil (c-set-style "linux")))
 
 (setq inferior-lisp-program "/opt/leiningen-1.6.1/lein repl")
 (add-hook 'emacs-lisp-mode-hook (lambda nil (local-set-key (kbd "C-c C-e") 'eval-last-sexp)))
@@ -150,7 +147,7 @@
                           ("\\<reinterpret_cast\\>" . font-lock-keyword-face)
                           ("\\<return\\>" . font-lock-keyword-face)
                           ("\\<short\\>" . font-lock-type-face)
-                          ("\\<signed\\>" . font-lock-type-face)
+                          ("\\<signed\\>" . font-lock-keyword-face)
                           ("\\<sizeof\\>" . font-lock-keyword-face)
                           ("\\<static\\>" . font-lock-keyword-face)
                           ("\\<static_assert\\>" . font-lock-keyword-face)
@@ -167,11 +164,11 @@
                           ("\\<typeid\\>" . font-lock-keyword-face)
                           ("\\<typename\\>" . font-lock-keyword-face)
                           ("\\<union\\>" . font-lock-keyword-face)
-                          ("\\<unsigned\\>" . font-lock-type-face)
+                          ("\\<unsigned\\>" . font-lock-keyword-face)
                           ("\\<using\\>" . font-lock-keyword-face)
                           ("\\<virtual\\>" . font-lock-keyword-face)
                           ("\\<void\\>" . font-lock-type-face)
-                          ("\\<volatile\\>" . font-lock-type-face)
+                          ("\\<volatile\\>" . font-lock-keyword-face)
                           ("\\<wchar_t\\>" . font-lock-type-face)
                           ("\\<while\\>" . font-lock-keyword-face)
                           ("\\<xor\\>" . font-lock-keyword-face)
