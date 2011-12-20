@@ -1,0 +1,16 @@
+Emacs.toolBar: 0
+Emacs.menuBar: off
+Emacs.font: Monospace-10
+Emacs.verticalScrollBars: off
+Emacs.cursorBlink: off
+Emacs.geometry: 100x60
+
+Emacs.mode-line.attributeForeground: #d9d9d9
+Emacs.mode-line.attributeBackground: #333333
+Emacs.mode-line.attributeBox: nil
+
+Emacs.mode-line-inactive.attributeForeground: #d9d9d9
+Emacs.mode-line-inactive.attributeBackground: #333333
+Emacs.mode-line-inactive.attributeBox: nil
+
+Emacs.mode-line-highlight.attributeBox: nil
