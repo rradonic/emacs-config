@@ -4,5 +4,6 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/yaml-mode"))
 
 (require '_general)
+(require '_faces_default)
 (require '_modes)
 (require '_file_types)
