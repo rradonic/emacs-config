@@ -1,9 +1,6 @@
 [submodule "yaml-mode"]
 	path = yaml-mode
 	url = git://github.com/yoshiki/yaml-mode.git
-[submodule "zenburn-emacs"]
-	path = zenburn-emacs
-	url = git@github.com:rradonic/zenburn-emacs.git
 [submodule "php-mode"]
 	path = php-mode
 	url = git@github.com:rradonic/php-mode.git
