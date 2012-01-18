@@ -9,4 +9,4 @@
 	url = git://github.com/technomancy/clojure-mode.git
 [submodule "haml-mode"]
 	path = haml-mode
-	url = git://github.com/nex3/haml-mode.git
+	url = git@github.com:rradonic/haml-mode.git
