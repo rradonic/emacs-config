@@ -1,14 +1,7 @@
 (custom-set-faces
- '(region ((t (:background "#8eaac3" :foreground "#ffffff"))))
+ '(region ((t (:background "#f07746" :foreground "#ffffff"))))
  '(isearch ((t (:background "Magenta3" :foreground "#ffffff"))))
  '(lazy-highlight ((t (:background "PaleTurquoise" :foreground "Black"))))
-
- '(font-lock-keyword-face ((t (:foreground "DarkCyan"))))
- '(font-lock-comment-face ((t (:foreground "Gray60"))))
- '(font-lock-constant-face ((t (:foreground "VioletRed4"))))
- '(font-lock-function-name-face ((t (:inherit default))))
- '(dired-directory ((t (:foreground "Blue1"))))
- '(dired-header ((t (:inherit default))))
 
  '(diff-header ((t (:background "#e5e5e5"))))
  '(diff-file-header ((t (:inherit diff-header :weight bold))))
@@ -38,7 +31,5 @@
  `(ediff-fine-diff-B ((t (:background "#beeeee"))))
  `(ediff-fine-diff-C ((t (:background "#f2f2f2"))))
  )
-
-(setq ibuffer-title-face nil)
 
 (provide '_faces_default)
