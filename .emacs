@@ -1,5 +1,6 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/clojure-mode"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/haml-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/php-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/yaml-mode"))
 
