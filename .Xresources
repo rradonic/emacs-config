@@ -1,6 +1,6 @@
 Emacs.toolBar: 0
 Emacs.menuBar: off
-Emacs.font: Monospace-10
+Emacs.font: Liberation Mono-11
 Emacs.verticalScrollBars: off
 Emacs.cursorBlink: off
 Emacs.geometry: 100x60
