@@ -47,7 +47,9 @@
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
 (setq backup-by-copying t)
 
-;; (setq grep-find-ignored-directories
-;;       (quote ("CVS" ".svn" ".git" ".hg" ".bzr" "dependencies" "log" "build")))
+(setq grep-find-ignored-directories
+      (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "log")))
+
+(setq tooltip-use-echo-area t)
 
 (provide '_general)
