@@ -2,6 +2,10 @@
 
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
 (delete-selection-mode 1)
 (transient-mark-mode -1)
 
@@ -38,6 +42,7 @@
 (global-set-key (kbd "C-x >") '(lambda nil (interactive) (scroll-left 60)))
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-i") 'indent-relative)
+(global-set-key (kbd "C-x C-c") 'save-buffers-kill-emacs)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq-default require-final-newline t)
