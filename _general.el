@@ -1,3 +1,5 @@
+(add-to-list 'default-frame-alist '(font . "Liberation Mono-11"))
+
 (setq inhibit-splash-screen t)
 
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
