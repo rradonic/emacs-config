@@ -10,3 +10,6 @@
 [submodule "haml-mode"]
 	path = haml-mode
 	url = git@github.com:rradonic/haml-mode.git
+[submodule "zenburn-theme"]
+	path = zenburn-theme
+	url = git://github.com/bbatsov/zenburn-emacs.git
