@@ -1,3 +1,6 @@
+(add-to-list 'default-frame-alist '(height . 60))
+(add-to-list 'default-frame-alist '(width . 100))
+
 (add-to-list 'default-frame-alist '(font . "Liberation Mono-11"))
 
 (setq inhibit-splash-screen t)
