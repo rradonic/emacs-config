@@ -58,7 +58,7 @@
 (setq backup-by-copying t)
 
 (setq grep-find-ignored-directories
-      (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "log")))
+      (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "log" "tmp")))
 
 (setq tooltip-use-echo-area t)
 
