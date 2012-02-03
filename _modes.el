@@ -1,5 +1,6 @@
 (setq rng-nxml-auto-validate-flag nil)
 (setq c-basic-offset 4)
+(setq css-indent-offset 2)
 (setq nxml-child-indent 4)
 (setq sgml-basic-offset 4)
 (setq ruby-insert-encoding-magic-comment nil)
