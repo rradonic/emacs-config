@@ -62,4 +62,6 @@
 
 (setq tooltip-use-echo-area t)
 
+(winner-mode 1)
+
 (provide '_general)
