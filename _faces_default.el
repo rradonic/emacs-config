@@ -1,4 +1,10 @@
 (custom-set-faces
+ '(mode-line ((t (:background "#444444" :foreground "#d9d9d9"))))
+ '(mode-line-inactive ((t (:background "#e5e5e5" :foreground "Gray45"))))
+ '(mode-line-highlight ((t (:box nil))))
+
+ '(cursor ((t (:background "#444444"))))
+
  '(region ((t (:background "#f07746" :foreground "#ffffff"))))
  '(isearch ((t (:background "Magenta3" :foreground "#ffffff"))))
  '(lazy-highlight ((t (:background "PaleTurquoise" :foreground "Black"))))
