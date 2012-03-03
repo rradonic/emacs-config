@@ -56,6 +56,7 @@
                               (name . "\\*.*\\*")))
                ("controllers" (filename . ".*/app/controllers/.*"))
                ("views" (filename . ".*/app/views/.*"))
+               ("stylesheets" (filename . ".*/stylesheets/.*"))
                ("models" (filename . ".*/app/models/.*"))
                ("lib" (filename . ".*/lib/.*"))
                ("migrations" (filename . ".*/db/migrate/.*"))
