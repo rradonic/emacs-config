@@ -17,6 +17,8 @@
                      clojure-mode-hook
                      cmake-mode-hook
                      html-mode-hook
+                     java-mode-hook
+                     js-mode-hook
                      nxml-mode-hook
                      yaml-mode-hook
                      sh-mode-hook
@@ -35,6 +37,9 @@
 
 ;; php-mode overrides the settings in c-default-style, so we need to enforce them
 (add-hook 'php-mode-hook (lambda nil (c-set-style "linux")))
+
+(require 'java-mode-indent-annotations)
+(add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
 
 (setq inferior-lisp-program "/opt/leiningen-1.6.1/lein repl")
 (add-hook 'emacs-lisp-mode-hook (lambda nil (local-set-key (kbd "C-c C-e") 'eval-last-sexp)))
