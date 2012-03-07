@@ -9,6 +9,8 @@
  '(isearch ((t (:background "Magenta3" :foreground "#ffffff"))))
  '(lazy-highlight ((t (:background "PaleTurquoise" :foreground "Black"))))
 
+ '(font-lock-comment-face ((t (:foreground "Gray65"))))
+
  '(diff-header ((t (:background "#e5e5e5"))))
  '(diff-file-header ((t (:inherit diff-header :weight bold))))
  '(diff-hunk-header ((t (:inherit diff-header))))
