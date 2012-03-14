@@ -20,7 +20,7 @@
  '(font-lock-type-face ((t (:inherit default))))
 
  '(dired-directory ((t (:foreground "#0065d0"))))
- '(dired-symlink ((t (:foreground "#0000ff"))))
+ '(dired-symlink ((t (:foreground "#a020f0"))))
 
  '(minibuffer-prompt ((t (:foreground "#0065d0"))))
 
