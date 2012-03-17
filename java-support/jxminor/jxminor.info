@@ -1,0 +1,422 @@
+This is jxminor.info, produced by makeinfo version 4.0b from
+/home/ajm/emacs/jxminor/jxminor.texinfo.
+
+INFO-DIR-SECTION Editors
+START-INFO-DIR-ENTRY
+* jxminor:(jxminor-mode).	Emacs minor mode for editing Java
+END-INFO-DIR-ENTRY
+
+
+File: jxminor.info,  Node: Top,  Next: Copying,  Prev: (dir),  Up: (dir)
+
+You are looking at the top node of the Info tree documenting JXMINOR
+(Version 0.1). Not all functions that are used only internally by the
+package are documented here, but after all you do have the source
+code. All commands and settable variables have built-in
+documentation, as per usual Emacs conventions.
+
+* Menu:
+
+* Copying::             You can copy jxminor
+* Introduction::        Setting things up
+* Developing::          Writing java code with Emacs and jxminor
+* Imports::             Sorting and cleaning up import statements
+* Methods::             Searching and navigating by method
+* Javadoc::             Inserting and managing javadoc
+* Templates::           Simple templates for repetitive text insertion
+* Logging::             Inserting logging statements for debugging
+* Compilation::         Additional support for compilation
+
+Indexes
+* Command Index::       Commands you can invoke
+* Variable Index::      Variables you can set
+* Key Index::           Default keybindings
+
+ --- The Detailed Node Listing ---
+
+Introduction
+
+* Contributors::        Who did what
+* Getting Started::     What to tell Emacs
+* Getting Help::        How Emacs can help
+
+
+File: jxminor.info,  Node: Copying,  Next: Introduction,  Prev: Top,  Up: Top
+
+You can freely copy, modify and redistribute jxminor because it's made
+available under the liberal terms of the GNU General Public License.
+
+   GNU General Public License as published by the Free Software
+Foundation; either version 2, or (at your option) any later version.
+
+   SML mode is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+along with GNU Emacs; see the file COPYING. If not, write to the Free
+Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+
+
+File: jxminor.info,  Node: Introduction,  Next: Developing,  Prev: Copying,  Up: Top
+
+Introduction
+************
+
+jxminor is a minor mode for Emacs for helping when editing Java code.
+It is meant to complement the Java major mode that Emacs already
+provides.
+
+   * Sort import statements by package name and comment out unused
+     ones.
+
+   * Incremental search for methods by name, forward and backward
+     motion by method.
+
+   * Insert Javadoc skeletons for methods including parameter and
+     exception information.
+
+   * Simple template insertion with text substitution.
+
+   *
+* Menu:
+
+* Contributors::        Who did what
+* Getting Started::     What to tell Emacs
+* Getting Help::        How Emacs can help
+
+
+File: jxminor.info,  Node: Contributors,  Next: Getting Started,  Prev: Introduction,  Up: Introduction
+
+Contributors to jxminor
+=======================
+
+   Contributions to the package are welcome. I have limited time to
+work on this project, but I will gladly add any code that you
+contribute to me to this package.
+
+   * The original version of the regular expression framework for
+     recognizing method signatures was borrowed from the qflib.el
+     package at <http://www.qfs.de/en/projects/qflib/index.html>.
+
+
+File: jxminor.info,  Node: Getting Started,  Next: Getting Help,  Prev: Contributors,  Up: Introduction
+
+Getting started
+===============
+
+If jxminor mode isn't already installed on your system, which is
+pretty unlikely, you'll need to do a few things to get started. You
+can tell whether or not it is installed by whether when you edit a
+Java file you see `JX' in the mode line after `Java'.
+
+   If it's not installed you will need to tell Emacs where to find all
+the jxminor `.el' files, and when to use them. The where is addressed
+by locating the Lisp code on your Emacs Lisp load path. You may have
+to create a directory for this, say `~/elisp', where you should
+unpack the `jxminor.tgz' file. Then insert the following lines in
+your `~/.emacs' file:
+
+     (add-to-list 'load-path "~/elisp/jxminor")
+     (autoload 'jxminor-mode-on "jx-mode" "" t)
+     (add-hook 'java-mode-hook 'jxminor-mode-on)
+
+The first line adjusts Emacs' internal search path so it can locate
+the Lisp source you have copied to that directory, the second line
+tells Emacs to load the code automatically when it is needed, and the
+third turns on jxminor mode for any Java file.
+
+   You may want to pre-compile the `jx-*.el' files (`M-x
+byte-compile-file') for greater speed--byte compiled code loads and
+runs somewhat faster.
+
+
+File: jxminor.info,  Node: Getting Help,  Prev: Getting Started,  Up: Introduction
+
+Help!
+=====
+
+You're reading it. Apart from the on-line info tree (`C-h i' is the
+Emacs key to enter the `info' system--you should follow the brief
+tutorial if this is unfamiliar), there are further details on specific
+commands in their documentation strings. Only the most useful jxminor
+commands are documented in the info tree: to find out more use Emacs'
+help facilities.
+
+   Briefly, to get help on a specific function use `C-h f' and enter
+the command name. All jxminor mode commands begin with `jx' or `jx-',
+so if you type this and press <TAB> (for completion) you will get a
+list of all commands. Another way is to use `C-h a' and enter the
+string `jx'. This is command apropos; it will list all commands with
+that sub-string in their names, and any key binding they may have in
+the current buffer. Command apropos gives a one-line synopsis of what
+each command does.
+
+   See *Note Command Index::, for a list of (info) documented
+functions. *Note Variable Index::, for a list of user settable
+variables to control the behaviour of jxminor.
+
+   Before accessing this information on-line from within Emacs you may
+have to set the variable `jxminor-mode-info'. Put in your `.emacs'
+file something like:
+
+     (setq jxminor-mode-info "~/elisp/jxminor/jxminor.info")
+
+When different from the default this variable should be a string
+giving the absolute name of the `.info' file. Then `C-c C-f i' in
+jxminor mode (i.e., the command `M-x jxminof-mode-info') will bring
+up the manual. This help is also accessible from the menu.
+
+
+File: jxminor.info,  Node: Developing,  Next: Imports,  Prev: Introduction,  Up: Top
+
+Writing Java code with Emacs and jxminor
+****************************************
+
+Some general info on how to make the best use of emacs when you're
+writing java code.
+
+
+File: jxminor.info,  Node: Imports,  Next: Methods,  Prev: Developing,  Up: Top
+
+Managing import statements
+**************************
+
+When you maintain java code, especially as part of a team, you can end
+up with more import statements than you need in a program. While this
+doesn't make the program less efficient it does make it harder to
+gauge by looking at the imports the dependencies of the program.
+jxminor mode provides three operations to apply to import statements.
+
+   * Sort the statements by package name.
+
+   * Comment out unused import statements.
+
+   * Delete commented out import statements.
+
+The operations can be selected from the menu or can be invoked with
+the following commands.
+
+ - Command: jx-sort-imports
+     Sort the input statements at the start of the program into
+     alphabetical order by package and class name. Group the packages
+     by the first part of the name with `java' and `javax' packages
+     preceeding `org' packages and `com' packages coming last. Put a
+     blank line between groups of import statements from the same
+     package.
+
+ - Command: jx-check-imports
+     Comment out unused import statements. For each import that
+     imports a single class the program is checked to see whether the
+     class is used anywhere. If no use can be found the import
+     statement is commented out. It is not deleted as there may be a
+     bug in the way this operation works and it that case it would be
+     better if the import statement were still available.
+
+ - Command: jx-delete-commented-imports
+     After the unused import statements have been commented out and
+     the program has been recompiled to check that none of them
+     really were needed this operation can be used to delete them.
+
+ - Command: jx-sort-and-check-imports
+     Lots of times you want to sort and then check the imports as one
+     operation so this function does that.
+
+
+File: jxminor.info,  Node: Methods,  Next: Javadoc,  Prev: Imports,  Up: Top
+
+Navigation and searching by method
+**********************************
+
+If you use Emacs' standard incremental search functions
+(`isearch-forward' or `isearch-backward') to search for the
+definition of method in a java file you generally have to press `C-s'
+or `C-r' several times to skip past all of the calls to the method
+before you get to the definiton. Jxminor provides
+`jx-isearch-forward' and `jx-isearch-backward' which only search for
+the entered string when it appears as part of a method name in a
+method definition.
+
+ - Command: jx-isearch-forward
+     Key: `M-s' Search forward incrementally for the string entered as
+     part of a method name. Once the incremental search interface
+     appears you use all of the standard key bindings it provides,
+     such as `C-s' to repeat the search forwards or `C-r' to search
+     backwards for the same string. Regular expression search is not
+     supported so if you switch to regular expression search you will
+     be using the standard incremental search facility.
+
+ - Command: jx-isearch-forward
+     Key: `M-s'
+
+     Search forward incrementally for the string entered as part of a
+     method name. Once the incremental search interface appears you
+     use all of the standard key bindings it provides, such as `C-s'
+     to repeat the search forwards or `C-r' to search backwards for
+     the same string. Regular expression search is not supported so
+     if you switch to regular expression search you will be using the
+     standard incremental search facility.
+
+ - Command: jx-isearch-backward
+     Key: `M-s'
+
+     Search backward incrementally for the string entered as part of a
+     method name. Once the incremental search interface appears you
+     use all of the standard key bindings it provides, such as `C-r'
+     to repeat the search backwards or `C-s' to search forwards for
+     the same string. Regular expression search is not supported so
+     if you switch to regular expression search you will be using the
+     standard incremental search facility.
+
+You can also use jxminor functions to move forward and backward
+through java code method by method.
+
+ - Command: jx-forward-method
+     Key: `M-n'
+
+     Move forward to the open bracket at the end of the next method
+     header in the file. If point is already inside a method header
+     when this is called it moves to the end of the current header.
+
+ - Command: jx-backward-method
+     Key: <M-p>
+
+     Move backward to the start of the line that starts the previous
+     next method header in the file. If point is already inside a
+     method header when this is called it moves to the start of the
+     current header.
+
+
+File: jxminor.info,  Node: Javadoc,  Next: Templates,  Prev: Methods,  Up: Top
+
+Javadoc
+*******
+
+A function is provided to insert skeleton javadoc comments for a java
+method. This skeleton includes all of the parameters passed to the
+method, and any return value and thrown exceptions. The example below
+shows all of these elements.
+
+     /**
+      * <<Description>>
+      * @param lex <<Description>>
+      * @param startingIndent <<Description>>
+      * @return <<Description>>
+      * @throws IOException
+      * @throws SyntaxException
+      */
+     boolean initOptionalFields(Lexer lex, int startingIndent)
+        throws IOException, SyntaxException {
+
+ - Command: jx-insert-javadoc
+     If point is currently inside a java method header insert skeleton
+     javadoc comments in front of it, other wise insert skeleton
+     javadoc comments before the next java method in the file. This
+     function is available from the menu.
+
+
+File: jxminor.info,  Node: Templates,  Next: Logging,  Prev: Javadoc,  Up: Top
+
+Templates
+*********
+
+How to create a template from some program text. How to edit an
+existing template. How to insert a template into a program.
+
+
+File: jxminor.info,  Node: Logging,  Next: Compilation,  Prev: Templates,  Up: Top
+
+Logging
+*******
+
+Functions are provided to insert logging statements for debugging
+purposes. Two sort of insertion are provided, one which logs the
+method name and all of the parameters of a method and another that
+prompts for the values to log. You can use either the `log4j' package
+or `System.out.println' to log the data.
+
+
+File: jxminor.info,  Node: Compilation,  Next: Command Index,  Prev: Logging,  Up: Top
+
+Compilation
+***********
+
+jxminor provides a command `jx-compile' as a replacement for
+`compile'. `jx-compile' is meant to make it easier to compile java
+code in a conventional build setting. It can help if you use `make'
+or `ant' to perform builds.
+
+`jx-compile' does three things
+
+   * Find the appropriate `build.xml' file or `Makefile' to use.
+
+   * Invoke `ant' or `make' it the directory containing the
+     `build.xml' file or `Makefile' that was found.
+
+   * Suggest possible targets for `ant' or `make' based on the
+     `build.xml' file found or file being edited.
+
+You can choose, by modifying the list `jx-build-file-name' whether
+`build.xml' (ant) is preferred to `makefile' or `Makefile' (make).
+
+
+File: jxminor.info,  Node: Command Index,  Next: Variable Index,  Prev: Compilation,  Up: Top
+
+Command Index
+*************
+
+* Menu:
+
+* jx-backward-method:                    Methods.
+* jx-check-imports:                      Imports.
+* jx-delete-commented-imports:           Imports.
+* jx-forward-method:                     Methods.
+* jx-insert-javadoc:                     Javadoc.
+* jx-isearch-backward:                   Methods.
+* jx-isearch-forward:                    Methods.
+* jx-sort-and-check-imports:             Imports.
+* jx-sort-imports:                       Imports.
+* jxminor-mode-info:                     Getting Help.
+
+
+File: jxminor.info,  Node: Variable Index,  Next: Key Index,  Prev: Command Index,  Up: Top
+
+Variable Index
+**************
+
+* Menu:
+
+* jxminor-mode-info:                     Getting Help.
+
+
+File: jxminor.info,  Node: Key Index,  Prev: Variable Index,  Up: Top
+
+Key Index
+*********
+
+* Menu:
+
+* C-c C-f i:                             Getting Help.
+
+
+
+Tag Table:
+Node: Top229
+Node: Copying1474
+Node: Introduction2264
+Node: Contributors2983
+Node: Getting Started3503
+Node: Getting Help4808
+Node: Developing6425
+Node: Imports6683
+Node: Methods8586
+Node: Javadoc11331
+Node: Templates12269
+Node: Logging12497
+Node: Compilation12910
+Node: Command Index13710
+Node: Variable Index14351
+Node: Key Index14542
+
+End Tag Table

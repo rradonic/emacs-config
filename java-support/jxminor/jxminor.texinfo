@@ -1,0 +1,532 @@
+\input texinfo @c -*-texinfo-*-
+
+@comment CVS $Id: jxminor.texinfo,v 1.5 2002/04/08 01:02:48 alexmoffat Exp $
+
+@comment Documentation for the GNU Emacs jxminor minor mode for Java editing.
+@comment Copyright (C) 2002 Alex J.@: Moffat
+
+@comment This file is part of the jxminor distribution.
+
+@comment jxminor is free software; you can redistribute it and/or modify
+@comment it under the terms of the GNU General Public License as published by
+@comment the Free Software Foundation; either version 2 of the License,
+@comment or (at your option) any later version.
+
+@comment jxminor is distributed in the hope that it will be useful,
+@comment but WITHOUT ANY WARRANTY; without even the implied warranty of
+@comment MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+@comment GNU General Public License for more details.
+
+@comment You should have received a copy of the GNU General Public License
+@comment along with jxminor; see the file COPYING.  If not, write to
+@comment the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+
+@setfilename jxminor.info
+@settitle jxminor - An Emacs minor mode for Java editing
+@dircategory Editors
+@direntry
+* jxminor:(jxminor-mode).	Emacs minor mode for editing Java
+@end direntry
+@c The current package version
+@set jxminorversion 0.1
+@setchapternewpage on
+
+@titlepage
+@sp 5
+@center @titlefont{Editing Java using jxminor}
+@sp 5
+@center {jxminor, Version @value{jxminorversion}}
+@center {March 2002}
+@sp 2
+@author Authors: Alex J.@: Moffat
+
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2002 Alex J. Moffat
+
+@sp 1
+@noindent
+GNU General Public License as published by the Free Software Foundation;
+either version 2, or (at your option) any later version.
+
+@sp 1
+@noindent
+jxminor is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+@sp 1
+@noindent
+You should have received a copy of the GNU General Public License along
+with GNU Emacs; see the file COPYING. If not, write to the Free Software
+Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+
+@end titlepage
+
+@setchapternewpage off
+@headings double
+
+@c ============================================================ TOP NODE
+
+@ifnottex
+@node Top, Copying, (dir), (dir)
+
+@c == Top, Copying, (dir), (dir) =======================================
+
+@noindent
+You are looking at the top node of the Info tree documenting
+@sc{jxminor} (Version @value{jxminorversion}). Not all functions that
+are used only internally by the package are documented here, but after
+all you do have the source code. All commands and settable variables
+have built-in documentation, as per usual Emacs conventions.
+
+@menu
+* Copying::             You can copy jxminor
+* Introduction::        Setting things up
+* Developing::          Writing java code with Emacs and jxminor
+* Imports::             Sorting and cleaning up import statements
+* Methods::             Searching and navigating by method
+* Javadoc::             Inserting and managing javadoc
+* Templates::           Simple templates for repetitive text insertion
+* Logging::             Inserting logging statements for debugging
+* Compilation::         Additional support for compilation
+
+Indexes
+* Command Index::       Commands you can invoke
+* Variable Index::      Variables you can set
+* Key Index::           Default keybindings
+
+@detailmenu
+ --- The Detailed Node Listing ---
+
+Introduction
+
+* Contributors::        Who did what
+* Getting Started::     What to tell Emacs
+* Getting Help::        How Emacs can help
+
+@end detailmenu
+@end menu
+
+@c ============================================================= COPYING
+
+@node Copying, Introduction, Top, Top
+
+@noindent
+You can freely copy, modify and redistribute jxminor because it's made
+available under the liberal terms of the GNU General Public License.
+
+GNU General Public License as published by the Free Software Foundation;
+either version 2, or (at your option) any later version.
+
+SML mode is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with GNU Emacs; see the file COPYING. If not, write to the Free Software
+Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+
+@end ifnottex
+
+@c ======================================================== INTRODUCTION
+
+@node Introduction, Developing, Copying, Top
+@chapter Introduction
+
+@noindent
+jxminor is a minor mode for Emacs for helping when editing Java
+code. It is meant to complement the Java major mode that Emacs already
+provides.
+
+@itemize @bullet
+@item
+Sort import statements by package name and comment out unused ones.
+@item
+Incremental search for methods by name, forward and backward motion by
+method.
+@item
+Insert Javadoc skeletons for methods including parameter and exception
+information.
+@item
+Simple template insertion with text substitution.
+@item
+
+@end itemize
+
+@menu
+* Contributors::        Who did what
+* Getting Started::     What to tell Emacs
+* Getting Help::        How Emacs can help
+@end menu
+
+@c ======================================================== CONTRIBUTORS
+
+@node Contributors, Getting Started, Introduction, Introduction
+@section Contributors to jxminor
+@cindex Contributors
+@cindex Authors
+
+Contributions to the package are welcome. I have limited time to work
+on this project, but I will gladly add any code that you contribute to
+me to this package.
+
+@itemize @bullet
+@item
+The original version of the regular expression framework for
+recognizing method signatures was borrowed from the qflib.el package
+at @url{http://www.qfs.de/en/projects/qflib/index.html}.
+@end itemize
+
+@c ===================================================== GETTING STARTED
+
+@node Getting Started, Getting Help, Contributors, Introduction
+@section Getting started
+
+@noindent
+If jxminor mode isn't already installed on your system, which is
+pretty unlikely, you'll need to do a few things to get started. You can
+tell whether or not it is installed by whether when you edit a Java file
+you see @samp{JX} in the mode line after @samp{Java}.
+
+If it's not installed you will need to tell Emacs where to find all
+the jxminor @file{.el} files, and when to use them. The where is
+addressed by locating the Lisp code on your Emacs Lisp load path. You
+may have to create a directory for this, say @file{~/elisp}, where you
+should unpack the @file{jxminor.tgz} file. Then insert the following
+lines in your @file{~/.emacs} file:
+
+@lisp
+(add-to-list 'load-path "~/elisp/jxminor")
+(autoload 'jxminor-mode-on "jx-mode" "" t)
+(add-hook 'java-mode-hook 'jxminor-mode-on)
+@end lisp
+
+@noindent
+The first line adjusts Emacs' internal search path so it can locate
+the Lisp source you have copied to that directory, the second line
+tells Emacs to load the code automatically when it is needed, and the
+third turns on jxminor mode for any Java file.
+
+You may want to pre-compile the @file{jx-*.el} files (@kbd{M-x
+byte-compile-file}) for greater speed---byte compiled code loads and
+runs somewhat faster.
+
+
+@c ======================================================== GETTING HELP
+
+@node Getting Help,  , Getting Started, Introduction
+@section Help!
+
+@c == Getting Help, , Getting Started, Introduction ====================
+
+
+@noindent
+You're reading it. Apart from the on-line info tree (@kbd{C-h i} is the
+Emacs key to enter the @code{info} system---you should follow the brief
+tutorial if this is unfamiliar), there are further details on specific
+commands in their documentation strings. Only the most useful
+jxminor commands are documented in the info tree: to find out more
+use Emacs' help facilities.
+
+Briefly, to get help on a specific function use @kbd{C-h f} and enter
+the command name. All jxminor mode commands begin with @code{jx} or
+@code{jx-}, so if you type this and press @key{TAB} (for completion)
+you will get a list of all commands. Another way is to use @kbd{C-h a}
+and enter the string @code{jx}. This is command apropos; it will list
+all commands with that sub-string in their names, and any key binding
+they may have in the current buffer. Command apropos gives a one-line
+synopsis of what each command does.
+
+See @xref{Command Index}, for a list of (info) documented
+functions. @xref{Variable Index}, for a list of user settable variables
+to control the behaviour of jxminor.
+
+Before accessing this information on-line from within Emacs you may
+have to set the variable @code{jxminor-mode-info}. Put in your
+@file{.emacs} file something like:
+
+@vindex jxminor-mode-info
+@findex jxminor-mode-info
+@kindex @kbd{C-c C-f i}
+@lisp
+(setq jxminor-mode-info "~/elisp/jxminor/jxminor.info")
+@end lisp
+
+@noindent
+When different from the default this variable should be a string
+giving the absolute name of the @file{.info} file. Then @kbd{C-c C-f i}
+in jxminor mode (i.e., the command @kbd{M-x jxminof-mode-info}) will bring
+up the manual. This help is also accessible from the menu. 
+
+@c ============================================================ DEVELOPING
+
+@node Developing, Imports, Introduction, Top
+@chapter Writing Java code with Emacs and jxminor
+
+@noindent 
+Some general info on how to make the best use of emacs when you're
+writing java code.
+
+@c ============================================================ IMPORTS
+
+@node Imports, Methods, Developing, Top
+@chapter Managing import statements
+
+@noindent
+When you maintain java code, especially as part of a team, you can end
+up with more import statements than you need in a program. While this
+doesn't make the program less efficient it does make it harder to
+gauge by looking at the imports the dependencies of the program. jxminor
+mode provides three operations to apply to import statements.
+
+@itemize @bullet
+@item
+Sort the statements by package name.
+
+@item
+Comment out unused import statements.
+
+@item
+Delete commented out import statements.
+@end itemize
+
+@noindent
+The operations can be selected from the menu or can be invoked with the
+following commands.
+
+@deffn Command jx-sort-imports
+@findex jx-sort-imports
+
+Sort the input statements at the start of the program into
+alphabetical order by package and class name. Group the packages by
+the first part of the name with @code{java} and @code{javax} packages
+preceeding @code{org} packages and @code{com} packages coming
+last. Put a blank line between groups of import statements from the
+same package.
+@end deffn
+
+@deffn Command jx-check-imports
+@findex jx-check-imports
+
+Comment out unused import statements. For each import that imports a
+single class the program is checked to see whether the class is used
+anywhere. If no use can be found the import statement is commented
+out. It is not deleted as there may be a bug in the way this operation
+works and it that case it would be better if the import statement were
+still available.
+@end deffn
+
+@deffn Command jx-delete-commented-imports
+@findex jx-delete-commented-imports
+
+After the unused import statements have been commented out and the
+program has been recompiled to check that none of them really were
+needed this operation can be used to delete them.
+@end deffn
+
+@deffn Command jx-sort-and-check-imports
+@findex jx-sort-and-check-imports
+
+Lots of times you want to sort and then check the imports as one
+operation so this function does that.
+@end deffn
+
+@c ========================================================= INTERACTION
+
+@node Methods, Javadoc, Imports, Top
+@chapter Navigation and searching by method
+
+@noindent
+If you use Emacs' standard incremental search functions
+(@code{isearch-forward} or @code{isearch-backward}) to search for the
+definition of method in a java file you generally have to press
+@kbd{C-s} or @kbd{C-r} several times to skip past all of the calls to
+the method before you get to the definiton. Jxminor provides
+@code{jx-isearch-forward} and @code{jx-isearch-backward} which only
+search for the entered string when it appears as part of a method name
+in a method definition.
+
+@deffn Command jx-isearch-forward
+@findex jx-isearch-forward
+
+Key: @kbd{M-s} Search forward incrementally for the string entered as
+part of a method name. Once the incremental search interface appears
+you use all of the standard key bindings it provides, such as
+@kbd{C-s} to repeat the search forwards or @kbd{C-r} to search
+backwards for the same string. Regular expression search is not
+supported so if you switch to regular expression search you will be
+using the standard incremental search facility.
+@end deffn
+
+@deffn Command jx-isearch-forward
+@findex jx-isearch-forward
+
+Key: @kbd{M-s}
+
+Search forward incrementally for the string entered as part of a
+method name. Once the incremental search interface appears you use all
+of the standard key bindings it provides, such as @kbd{C-s} to repeat
+the search forwards or @kbd{C-r} to search backwards for the same
+string. Regular expression search is not supported so if you switch to
+regular expression search you will be using the standard incremental
+search facility.
+@end deffn
+
+@deffn Command jx-isearch-backward
+@findex jx-isearch-backward
+
+Key: @kbd{M-s}
+
+Search backward incrementally for the string entered as part of a
+method name. Once the incremental search interface appears you use all
+of the standard key bindings it provides, such as @kbd{C-r} to repeat
+the search backwards or @kbd{C-s} to search forwards for the same
+string. Regular expression search is not supported so if you switch to
+regular expression search you will be using the standard incremental
+search facility.
+@end deffn
+
+@noindent
+You can also use jxminor functions to move forward and backward
+through java code method by method.
+
+@deffn Command jx-forward-method
+@findex jx-forward-method
+
+Key: @kbd{M-n}
+
+Move forward to the open bracket at the end of the next method header
+in the file. If point is already inside a method header when this is
+called it moves to the end of the current header.
+@end deffn
+
+@deffn Command jx-backward-method
+@findex jx-backward-method
+
+Key: @key{M-p}
+
+Move backward to the start of the line that starts the previous next
+method header in the file. If point is already inside a method header
+when this is called it moves to the start of the current header.
+@end deffn
+
+@c ======================================================= JAVADOC
+
+@node Javadoc, Templates, Methods, Top
+@chapter Javadoc
+
+@noindent
+A function is provided to insert skeleton javadoc comments for a java
+method. This skeleton includes all of the parameters passed to the
+method, and any return value and thrown exceptions. The example below
+shows all of these elements.
+
+@example
+/**
+ * <<Description>>
+ * @@param lex <<Description>>
+ * @@param startingIndent <<Description>>
+ * @@return <<Description>>
+ * @@throws IOException
+ * @@throws SyntaxException
+ */
+boolean initOptionalFields(Lexer lex, int startingIndent)
+   throws IOException, SyntaxException @{
+@end example
+
+@deffn Command jx-insert-javadoc
+@findex jx-insert-javadoc
+
+If point is currently inside a java method header insert skeleton
+javadoc comments in front of it, other wise insert skeleton javadoc
+comments before the next java method in the file. This function is
+available from the menu.
+@end deffn
+
+@c ======================================================= TEMPLATES
+
+@node Templates, Logging, Javadoc, Top
+@chapter Templates
+
+@noindent
+How to create a template from some program text. How to edit an
+existing template. How to insert a template into a program.
+
+@c ======================================================= LOGGING
+
+@node Logging,  Compilation, Templates, Top
+@chapter Logging
+
+@noindent
+Functions are provided to insert logging statements for debugging
+purposes. Two sort of insertion are provided, one which logs the
+method name and all of the parameters of a method and another that
+prompts for the values to log. You can use either the @code{log4j}
+package or @code{System.out.println} to log the data.
+
+@c ======================================================= COMPILATION
+
+@node Compilation,  Command Index, Logging, Top
+@chapter Compilation
+
+@noindent
+jxminor provides a command @command{jx-compile} as a replacement for
+@command{compile}. @command{jx-compile} is meant to make it easier to
+compile java code in a conventional build setting. It can help if you
+use @code{make} or @code{ant} to perform builds.
+
+@noindent
+@command{jx-compile} does three things
+
+@itemize
+@item
+Find the appropriate @code{build.xml} file or @code{Makefile} to use.
+@item
+Invoke @code{ant} or @code{make} it the directory containing the
+@code{build.xml} file or @code{Makefile} that was found.
+@item
+Suggest possible targets for @code{ant} or @code{make} based on the
+@code{build.xml} file found or file being edited.
+@end itemize
+
+@noindent
+You can choose, by modifying the list @code{jx-build-file-name}
+whether @code{build.xml} (ant) is preferred to @code{makefile} or
+@code{Makefile} (make).
+
+@c ======================================================= COMMAND INDEX
+
+@headings singleafter
+
+@node Command Index,  Variable Index, Compilation, Top
+
+@unnumbered Command Index
+
+@printindex fn
+
+@c ====================================================== VARIABLE INDEX
+
+@c node Variable Index, , Command Index, Top
+@node Variable Index,  Key Index, Command Index, Top
+
+@unnumbered Variable Index
+
+@c == Variable Index, Key Index, Command Index, Top ====================
+
+@printindex vr
+
+@c =========================================================== KEY INDEX
+
+@node Key Index,  , Variable Index, Top
+
+@unnumbered Key Index
+
+@c == Key Index, , Variable Index, Top =================================
+
+@printindex ky
+
+@contents
+@bye

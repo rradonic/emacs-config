@@ -1,8 +1,3 @@
-(autoload 'clojure-mode "clojure-mode")
-(autoload 'haml-mode "haml-mode")
-(autoload 'php-mode "php-mode")
-(autoload 'yaml-mode "yaml-mode")
-
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))

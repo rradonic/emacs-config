@@ -1,0 +1,4 @@
+Some elisp files defining a minor mode to help when editing java
+programs. See the file COPYING for the terms these files are
+distributed under. See the file jx-mode.el for information on how to
+install and use this mode.

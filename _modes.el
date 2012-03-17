@@ -1,3 +1,9 @@
+(autoload 'clojure-mode "clojure-mode")
+(autoload 'haml-mode "haml-mode")
+(autoload 'php-mode "php-mode")
+(autoload 'yaml-mode "yaml-mode")
+(autoload 'jxminor-mode-on "jx-mode")
+
 (setq rng-nxml-auto-validate-flag nil)
 (setq c-basic-offset 4)
 (setq css-indent-offset 2)
@@ -40,6 +46,7 @@
 
 (require 'java-mode-indent-annotations)
 (add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
+(add-hook 'java-mode-hook 'jxminor-mode-on)
 
 (setq inferior-lisp-program "/opt/leiningen-1.6.1/lein repl")
 (add-hook 'emacs-lisp-mode-hook (lambda nil (local-set-key (kbd "C-c C-e") 'eval-last-sexp)))
