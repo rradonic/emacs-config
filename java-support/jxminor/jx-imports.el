@@ -41,11 +41,11 @@
 ;;    word in the program (when interpreted as a class name).
 ;;
 ;; Installation:
-;; 
+;;
 ;; Make the file accessible somewhere on your load path.
 ;;
 ;; Customization:
-;; 
+;;
 ;; None
 ;;
 ;; Change log:
@@ -213,27 +213,7 @@ between packages."
             (funcall hoist-forward "java"
                      start-of-sort-region)
             ;; back to the beginning
-            (goto-char start-of-sort-region)
-            ;; put blank lines between the packages
-            (let ((last-package "")
-                  (this-package "")
-                  (start-of-package 0))
-              (while (looking-at import-regexp)
-                (setq start-of-package (+ (match-end 0) 1))
-                (end-of-line)
-                (search-backward "." start-of-package)
-                (setq this-package
-                      (buffer-substring
-                       start-of-package (point)))
-                (if (not (equal last-package this-package))
-                    (progn
-                      (if (not (equal last-package ""))
-                          (progn
-                            (forward-line 0)
-                            (newline)))
-                      (setq last-package this-package)))
-                (next-line 1)
-                (forward-line 0))))))
+            (goto-char start-of-sort-region))))
     (save-excursion
       (let ((import-region (jx-get-import-region import-regexp)))
         (if (null import-region)
@@ -242,7 +222,7 @@ between packages."
                 (start-of-sort-region (car import-region))
                 ;; end of region containing imports
                 (end-of-sort-region (cdr import-region))
-                ;; current buffer 
+                ;; current buffer
                 (old-buf (current-buffer))
                 ;; temp buffer for sorting in, name starts with space
                 ;; so it won't be listed to user
@@ -291,7 +271,7 @@ modified, nil otherwise."
            (import-regexp jx-uncommented-import-regexp)
            ;; The region containing the imports
            (import-region (jx-get-import-region import-regexp)))
-      ;; if no imports then do nothing and return nil 
+      ;; if no imports then do nothing and return nil
       (if (null import-region)
           nil
         (let* (	;; was the buffer modified
@@ -404,7 +384,7 @@ jx-check-imports."
             (message "Delete completed. Buffer has been modified")
           (message "Delete completed. No changes made to buffer")))
     modified))
-  
+
 (defun jx-sort-and-check-imports ()
   "Sort the import statements in the program and then check them to
 comment out any that are not used."
@@ -419,7 +399,7 @@ comment out any that are not used."
   "Create and return a keymap to use as a menu of the functions
 available from jx-imports."
   (let ((jx-imports-submenu (make-sparse-keymap "Imports")))
-    
+
     (define-key jx-imports-submenu [delete-commented-imports]
       '(menu-item "Delete Commented" jx-delete-commented-imports
 		  :key-sequence nil
@@ -429,12 +409,12 @@ available from jx-imports."
       '(menu-item "Sort and Check" jx-sort-and-check-imports
 		  :key-sequence nil
 		  :help "Sort the import statements and check for unused ones"))
-    
+
     (define-key jx-imports-submenu [check-imports]
       '(menu-item "Check" jx-check-imports
 		  :key-sequence nil
 		  :help "Check for unused import statements"))
-    
+
     (define-key jx-imports-submenu [sort-imports]
       '(menu-item "Sort" jx-sort-imports
 		  :key-sequence nil
