@@ -1,13 +1,16 @@
 (custom-set-faces
- '(mode-line ((t (:background "#444444" :foreground "#d9d9d9"))))
+ '(mode-line ((t (:background "#000000" :foreground "#d9d9d9"))))
  '(mode-line-inactive ((t (:background "#e5e5e5" :foreground "#737373"))))
  '(mode-line-highlight ((t (:box nil))))
 
- '(cursor ((t (:background "#444444"))))
+ '(fringe ((t (:background "#e5e5e5"))))
 
- '(region ((t (:background "#909090" :foreground "#ffffff"))))
+ '(region ((t (:background "#f07746" :foreground "#ffffff"))))
  '(isearch ((t (:background "#cd00cd" :foreground "#ffffff"))))
  '(lazy-highlight ((t (:background "#afeeee" :foreground "Black"))))
+
+ '(font-lock-comment-face ((t (:foreground "#a5a5a5"))))
+ '(font-lock-doc-face ((t (:foreground "#a0a0a0"))))
 
  '(diff-header ((t (:background "#e5e5e5"))))
  '(diff-file-header ((t (:inherit diff-header :weight bold))))
@@ -35,8 +38,7 @@
  `(ediff-fine-diff-A ((t (:background "#beeeee"))))
  `(ediff-fine-diff-Ancestor ((t (:background "#f2f2f2"))))
  `(ediff-fine-diff-B ((t (:background "#beeeee"))))
- `(ediff-fine-diff-C ((t (:background "#f2f2f2"))))
- )
+ `(ediff-fine-diff-C ((t (:background "#f2f2f2")))))
 
 (font-lock-add-keywords 'c++-mode
                         '(("\\<and\\>" . font-lock-keyword-face)
@@ -175,7 +177,13 @@
                           ("\\<void\\>" . font-lock-keyword-face)
                           ("\\<volatile\\>" . font-lock-keyword-face)
                           ("\\<while\\>" . font-lock-keyword-face)
-                          ("@\\<[[:alnum:]]+?\\>" . font-lock-builtin-face)))
+                          ("@\\<[[:alnum:]]+?\\>" . font-lock-constant-face)))
+
+(font-lock-add-keywords 'ruby-mode
+                        '(("\\<nil\\>" . font-lock-keyword-face)
+                          ("\\<self\\>" . font-lock-keyword-face)
+                          ("\\<true\\>" . font-lock-keyword-face)
+                          ("\\<false\\>" . font-lock-keyword-face)))
 
 (setq c++-font-lock-extra-types nil)
 (setq java-font-lock-extra-types nil)
