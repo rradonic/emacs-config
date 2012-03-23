@@ -11,6 +11,8 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
+(blink-cursor-mode -1)
+
 (delete-selection-mode 1)
 (transient-mark-mode -1)
 
