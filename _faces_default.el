@@ -1,16 +1,16 @@
 (custom-set-faces
- '(mode-line ((t (:background "#000000" :foreground "#d9d9d9"))))
+ '(mode-line ((t (:background "#000000" :foreground "#ffffff"))))
  '(mode-line-inactive ((t (:background "#e5e5e5" :foreground "#737373"))))
  '(mode-line-highlight ((t (:box nil))))
 
  '(fringe ((t (:background "#e5e5e5"))))
 
- '(region ((t (:background "#f07746" :foreground "#ffffff"))))
+ '(region ((t (:background "#999999" :foreground "#ffffff"))))
  '(isearch ((t (:background "#cd00cd" :foreground "#ffffff"))))
  '(lazy-highlight ((t (:background "#afeeee" :foreground "Black"))))
 
  '(font-lock-comment-face ((t (:foreground "#a5a5a5"))))
- '(font-lock-doc-face ((t (:foreground "#a0a0a0"))))
+ '(font-lock-doc-face ((t (:foreground "#a5a5a5"))))
 
  '(diff-header ((t (:background "#e5e5e5"))))
  '(diff-file-header ((t (:inherit diff-header :weight bold))))
@@ -39,6 +39,42 @@
  `(ediff-fine-diff-Ancestor ((t (:background "#f2f2f2"))))
  `(ediff-fine-diff-B ((t (:background "#beeeee"))))
  `(ediff-fine-diff-C ((t (:background "#f2f2f2")))))
+
+(font-lock-add-keywords 'c-mode
+                        '(("\\<auto\\>" . font-lock-keyword-face)
+                          ("\\<break\\>" . font-lock-keyword-face)
+                          ("\\<case\\>" . font-lock-keyword-face)
+                          ("\\<char\\>" . font-lock-keyword-face)
+                          ("\\<const\\>" . font-lock-keyword-face)
+                          ("\\<continue\\>" . font-lock-keyword-face)
+                          ("\\<default\\>" . font-lock-keyword-face)
+                          ("\\<do\\>" . font-lock-keyword-face)
+                          ("\\<double\\>" . font-lock-keyword-face)
+                          ("\\<else\\>" . font-lock-keyword-face)
+                          ("\\<enum\\>" . font-lock-keyword-face)
+                          ("\\<extern\\>" . font-lock-keyword-face)
+                          ("\\<float\\>" . font-lock-keyword-face)
+                          ("\\<for\\>" . font-lock-keyword-face)
+                          ("\\<goto\\>" . font-lock-keyword-face)
+                          ("\\<if\\>" . font-lock-keyword-face)
+                          ("\\<inline\\>" . font-lock-keyword-face)
+                          ("\\<int\\>" . font-lock-keyword-face)
+                          ("\\<long\\>" . font-lock-keyword-face)
+                          ("\\<register\\>" . font-lock-keyword-face)
+                          ("\\<restrict\\>" . font-lock-keyword-face)
+                          ("\\<return\\>" . font-lock-keyword-face)
+                          ("\\<short\\>" . font-lock-keyword-face)
+                          ("\\<signed\\>" . font-lock-keyword-face)
+                          ("\\<sizeof\\>" . font-lock-keyword-face)
+                          ("\\<static\\>" . font-lock-keyword-face)
+                          ("\\<struct\\>" . font-lock-keyword-face)
+                          ("\\<switch\\>" . font-lock-keyword-face)
+                          ("\\<typedef\\>" . font-lock-keyword-face)
+                          ("\\<union\\>" . font-lock-keyword-face)
+                          ("\\<unsigned\\>" . font-lock-keyword-face)
+                          ("\\<xor_void\\>" . font-lock-keyword-face)
+                          ("\\<volatile\\>" . font-lock-keyword-face)
+                          ("\\<while\\>" . font-lock-keyword-face)))
 
 (font-lock-add-keywords 'c++-mode
                         '(("\\<and\\>" . font-lock-keyword-face)
@@ -191,6 +227,7 @@
 (setq font-lock-maximum-decoration
       '((c++-mode . 1)
         (java-mode . 1)
+        (c-mode . 1)
         (t . t)))
 
 (provide '_faces_default)
