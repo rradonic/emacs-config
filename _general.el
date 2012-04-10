@@ -49,6 +49,7 @@
 (global-set-key (kbd "C-x >") '(lambda nil (interactive) (scroll-left 60)))
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-i") 'indent-relative)
+(global-set-key (kbd "C-x C-c") 'save-buffers-kill-emacs)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq-default require-final-newline t)
