@@ -186,6 +186,7 @@
       '((c++-mode . 1)
         (java-mode . 1)
         (c-mode . 1)
+        (js-mode . 2)
         (t . t)))
 
 (provide '_faces)
