@@ -9,10 +9,11 @@
  `(isearch ((t (:background "#495766" :foreground ,zenburn-fg))))
  `(lazy-highlight ((t (:background "#668b8b" :foreground ,zenburn-fg))))
 
- ;; `(font-lock-type-face ((t (:inherit default))))
- ;; `(font-lock-constant-face ((t (:inherit font-lock-type-face))))
- ;; `(font-lock-variable-name-face ((t (:inherit default))))
- ;; `(font-lock-function-name-face ((t (:inherit default))))
+ `(font-lock-function-name-face ((t (:inherit default))))
+ `(font-lock-variable-name-face ((t (:inherit default))))
+ `(font-lock-type-face ((t (:inherit default))))
+
+ `(dired-directory ((t (:foreground ,zenburn-blue))))
 
  `(diff-file-header ((t (:background ,zenburn-bg+1 :bold t))))
 
